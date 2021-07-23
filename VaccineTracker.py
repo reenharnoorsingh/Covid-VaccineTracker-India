@@ -18,8 +18,7 @@ print_flag = 'Y'
 print("Starting the search for Covid Vaccine slots!")
 
 actual = datetime.today()  # searches for the current day
-list_format = [actual + timedelta(days=i)
-               for i in range(num_days)]  # formats to a list
+list_format = [actual + timedelta(days=i)for i in range(num_days)]  # formats to a list
 actual_dates = [i.strftime("%d-%m-%Y") for i in list_format]
 
 num_searches = 0
