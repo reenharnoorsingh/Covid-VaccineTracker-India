@@ -1,23 +1,24 @@
 # Vaccine Tracker for India
 
+#imports
 import requests
 from pygame import mixer
 from datetime import datetime, timedelta
 import time
 
 # Insert search parameters here
-age = 19
-pincodes = input("Enter the pincode")
-num_days = 6
-dose = 1
+age = int(input("Enter your age: ")) #input age
+pincodes = [input("Enter the pincode: ")] #input pincode
+num_days = 6 #total slots searched
+dose = 1 #number of dose
 polling_interval = 1
 
 print_flag = 'Y'
 
-print("Starting search for Covid vaccine slots!")
+print("Starting the search for Covid Vaccine slots!")
 
-actual = datetime.today()
-list_format = [actual + timedelta(days=i) for i in range(num_days)]
+actual = datetime.today()#searches for the current day
+list_format = [actual + timedelta(days=i) for i in range(num_days)] #formats to a list
 actual_dates = [i.strftime("%d-%m-%Y") for i in list_format]
 
 num_searches = 0
@@ -27,7 +28,7 @@ while True:
         for given_date in actual_dates:
 
             URL = "https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByPin?pincode={}&date={}".format(
-                pincode, given_date)
+                pincode, given_date) #api
             header = {
                 'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.76 Safari/537.36'}
 
@@ -62,9 +63,10 @@ while True:
         num_searches += 1
     else:
         mixer.init()
-        mixer.music.load('sound/dingdong.wav')
+        mixer.music.load('sounds/dingdong.wav')
         mixer.music.play()
         print("Search Completed! Slots available")
+        print("Book your slot at https://selfregistration.cowin.gov.in/ ")
 
     dt = datetime.now() + timedelta(minutes=polling_interval)
 
