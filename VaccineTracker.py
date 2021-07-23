@@ -10,7 +10,7 @@ import time
 age = int(input("Enter your age: "))  # input age
 pincodes = [input("Enter the pincode: ")]  # input pincode
 num_days = 6  # total slots searched
-dose = 1  # number of dose
+dose = input("Enter the dose number: ")  # number of dose
 polling_interval = 1
 
 print_flag = 'Y'
